@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { jwt } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
 
 const userSchema = new Schema(
@@ -53,17 +53,15 @@ const userSchema = new Schema(
         refreshToken: {
             type: String
         }
-    }, { timestamps }
+    }, { timestamps: true }
 )
 
 
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
-    this.password = bcrypt.hash(this.password, 10);
+    this.password = await bcrypt.hash(this.password, 10);
     next()
 })
-
-
 
 // Method to compare user entered password with the hashed one in database
 userSchema.methods.isPasswordCorrect = async function (password) {
