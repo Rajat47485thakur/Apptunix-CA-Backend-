@@ -1,7 +1,7 @@
 {
   "name": "chaibackend",
   "version": "1.0.0",
-  "description": "this is  a backnd first app",
+  "description": "this is  a backend first app",
   "main": "index.js",
   "type": "module",
   "scripts": {
